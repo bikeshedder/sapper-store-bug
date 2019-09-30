@@ -1,21 +1,12 @@
-<script context="module">
-	export function preload({ params, query }) {
-		return { name: 'borat' }
-	}
-</script>
-
 <script>
-	export let name;
-
 	import { stores } from '@sapper/app'
+	const name1 = stores().name
 	import { getContext } from 'svelte'
-
-	const foo = stores().foo
-	foo.set(name)
-
-	const bar = getContext('bar')
-	bar.set(name)
+    import { NAME2_CTX } from './_layout.svelte'
+	const name2 = getContext(NAME2_CTX)
+	import { name as name3 } from './_stores'
 </script>
 
-<h2>routes/index.svelte :: $foo = {$foo}</h2>
-<h2>routes/index.svelte :: $bar = {$bar}</h2>
+<h2>routes/index.svelte :: stores().name = {$name1}</h2>
+<h2>routes/index.svelte :: getContext('name') = {$name2}</h2>
+<h2>routes/index.svelte :: _stores.name = {$name3} </h2>
